@@ -3,3 +3,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/demo
     username: postgres
     password: postgres
+  jackson:
+    serialization:
+      indent_output: true
