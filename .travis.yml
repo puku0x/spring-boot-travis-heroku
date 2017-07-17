@@ -1,6 +1,10 @@
 language: java
 jdk:
  - oraclejdk8
+
+before_script:
+ - psql -c 'create database demo;' -U postgres
+
 deploy:
  provider: heroku
  api-key: 
