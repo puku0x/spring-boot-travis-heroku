@@ -39,6 +39,11 @@ public class TodoController {
 		return todoService.findAll(offset, limit);
 	}
 
+	@GetMapping("/{id}")
+	public Todo findById(@PathVariable("id") Integer id) {
+		return todoService.findById(id);
+	}
+
 	/**
 	 * 登録
 	 * @param form
