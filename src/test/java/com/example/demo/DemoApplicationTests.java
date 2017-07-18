@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -34,7 +34,7 @@ public class DemoApplicationTests {
 	@Test
 	public void create() throws Exception {
 		Todo todo = new Todo(1, "test");
-		when(service.save(todo)).thenReturn(todo);
+		given(service.save(todo)).willReturn(todo);
 		ObjectMapper objectMapper = new ObjectMapper();
 		byte[] requestJson = objectMapper.writeValueAsBytes(todo);
 		mvc.perform(post("/api/v1/todos")
