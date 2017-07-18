@@ -19,7 +19,6 @@ import com.example.demo.entities.Todo;
 import com.example.demo.forms.TodoForm;
 import com.example.demo.services.TodoService;
 
-
 @RestController
 @RequestMapping("/api/v1/todos")
 public class TodoController {
@@ -34,8 +33,8 @@ public class TodoController {
 	 */
 	@GetMapping
 	public Page<Todo> findAll(
-			@RequestParam(name="offset", defaultValue="0") Integer offset,
-			@RequestParam(name="limit", defaultValue="100") Integer limit) {
+			@RequestParam(name = "offset", defaultValue = "0") Integer offset,
+			@RequestParam(name = "limit", defaultValue = "100") Integer limit) {
 		return todoService.findAll(offset, limit);
 	}
 

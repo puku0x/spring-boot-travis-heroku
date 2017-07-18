@@ -24,23 +24,23 @@ public class DemoApplicationTests {
 	@Autowired
 	MockMvc mvc;
 
-    @MockBean
-    private TodoService service;
+	@MockBean
+	private TodoService service;
 
-    /**
-     * Todoを新規作成できるかのテスト
-     * @throws Exception
-     */
-    @Test
-    public void create() throws Exception {
-    		Todo todo = new Todo(1, "test");
-    		when(service.save(todo)).thenReturn(todo);
-    		ObjectMapper objectMapper = new ObjectMapper();
-        byte[] requestJson =  objectMapper.writeValueAsBytes(todo);
-    		mvc.perform(post("/api/v1/todos")
-			.contentType(MediaType.APPLICATION_JSON)
-			.content(requestJson))
-			.andExpect(status().isOk())
-			.andReturn();
-    }
+	/**
+	 * Todoを新規作成できるかのテスト
+	 * @throws Exception
+	 */
+	@Test
+	public void create() throws Exception {
+		Todo todo = new Todo(1, "test");
+		when(service.save(todo)).thenReturn(todo);
+		ObjectMapper objectMapper = new ObjectMapper();
+		byte[] requestJson = objectMapper.writeValueAsBytes(todo);
+		mvc.perform(post("/api/v1/todos")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(requestJson))
+				.andExpect(status().isOk())
+				.andReturn();
+	}
 }
