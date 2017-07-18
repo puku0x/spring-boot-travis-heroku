@@ -2,7 +2,6 @@ package com.example.demo;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Test;
@@ -42,7 +41,6 @@ public class DemoApplicationTests {
 			.contentType(MediaType.APPLICATION_JSON)
 			.content(requestJson))
 			.andExpect(status().isOk())
-			.andDo(print())
 			.andReturn();
     }
 }
