@@ -1,16 +1,48 @@
 package com.example.demo;
 
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.example.demo.controllers.TodoController;
+import com.example.demo.entities.Todo;
+import com.example.demo.services.TodoService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@WebMvcTest(TodoController.class)
 public class DemoApplicationTests {
+	@Autowired
+	MockMvc mvc;
 
-	@Test
-	public void contextLoads() {
-	}
+    @MockBean
+    private TodoService service;
 
+    /**
+     * Todoを新規作成できるかのテスト
+     * @throws Exception
+     */
+    @Test
+    public void create() throws Exception {
+    		Todo todo = new Todo(1, "test");
+    		when(service.save(todo)).thenReturn(todo);
+    		ObjectMapper objectMapper = new ObjectMapper();
+        byte[] requestJson =  objectMapper.writeValueAsBytes(todo);
+    		mvc.perform(post("/api/v1/todos")
+			.contentType(MediaType.APPLICATION_JSON)
+			.content(requestJson))
+			.andExpect(status().isOk())
+			.andDo(print())
+			.andReturn();
+    }
 }
