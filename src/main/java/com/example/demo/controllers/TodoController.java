@@ -20,7 +20,7 @@ import com.example.demo.forms.TodoForm;
 import com.example.demo.services.TodoService;
 
 @RestController
-@RequestMapping("/api/v1/todos")
+@RequestMapping("/api/v1/todoes")
 public class TodoController {
 	@Autowired
 	private TodoService todoService;
