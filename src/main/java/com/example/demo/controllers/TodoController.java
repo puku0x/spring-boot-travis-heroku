@@ -22,7 +22,7 @@ import com.example.demo.services.TodoService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/todoes")
+@RequestMapping("/api/v1/todos")
 public class TodoController {
 	@Autowired
 	private TodoService todoService;
