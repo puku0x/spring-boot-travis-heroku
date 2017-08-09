@@ -26,7 +26,7 @@ public class TodoService {
 	 */
 	@Transactional(readOnly = true)
 	public Page<Todo> findAll(Integer offset, Integer limit) {
-		return todoRepository.findAll(new PageRequest(offset, limit));
+		return todoRepository.findByOrderByIdAsc(new PageRequest(offset, limit));
 	}
 
 	/**
