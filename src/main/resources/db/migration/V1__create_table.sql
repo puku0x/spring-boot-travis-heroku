@@ -1,5 +1,8 @@
 -- テーブル
 CREATE TABLE todo(
 	id serial PRIMARY KEY,
-	content VARCHAR(100)
+	content VARCHAR(100),
+	done BOOLEAN NOT NULL DEFAULT FALSE,
+	create_date TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
+	update_date TIMESTAMP WITHOUT TIME ZONE
 );

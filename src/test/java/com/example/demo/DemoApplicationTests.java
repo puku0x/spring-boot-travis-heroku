@@ -33,14 +33,13 @@ public class DemoApplicationTests {
 	 */
 	@Test
 	public void create() throws Exception {
-		Todo todo = new Todo(1, "test");
+		Todo todo = new Todo(null, "test", null, null, null);
 		given(service.save(todo)).willReturn(todo);
 		ObjectMapper objectMapper = new ObjectMapper();
 		byte[] requestJson = objectMapper.writeValueAsBytes(todo);
 		mvc.perform(post("/api/v1/todos")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(requestJson))
-				.andExpect(status().isOk())
-				.andReturn();
+				.andExpect(status().isOk());
 	}
 }

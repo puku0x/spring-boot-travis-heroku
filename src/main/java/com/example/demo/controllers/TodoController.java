@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,6 +39,11 @@ public class TodoController {
 		return todoService.findAll(offset, limit);
 	}
 
+	/**
+	 * 1件取得
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
 	public Todo findById(@PathVariable("id") Integer id) {
 		return todoService.findById(id);
@@ -53,7 +57,7 @@ public class TodoController {
 	@PostMapping
 	public Todo create(@Valid @RequestBody TodoForm form) {
 		Todo todo = new Todo();
-		BeanUtils.copyProperties(form, todo);
+		todo.setContent(form.getContent());
 		return todoService.save(todo);
 	}
 
