@@ -80,8 +80,9 @@ public class TodoController {
 	 * @return
 	 */
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") Integer id) {
+	public Todo delete(@PathVariable("id") Integer id) {
 		Todo todo = todoService.findById(id);
 		todoService.delete(todo);
+		return todo;
 	}
 }
